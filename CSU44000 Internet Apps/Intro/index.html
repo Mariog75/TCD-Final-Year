@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My Countdown</title>
+</head>
+
+<body>
+    <h1 id="heading">Clock</h1>
+    <script>
+
+        async function clock() {
+            for (var i = 25; i >= 0; i = i - 5) {
+                await sleep(1000);
+                document.getElementById("heading").innerHTML = i;
+
+                if(i == 0) {
+                    if(confirm("Go again?")) {
+                        clock();
+                    } else {
+                        
+                    }
+                }
+            }
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        clock();
+    </script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div id="app">
+        <h1>Welcome to the Best Weather App</h1>
+        Please enter the location to search for
+        <br>
+        Location: <input v-model="location">
+        <button v-on:click="GetWeather">Get Weather</button>
+            <br> Latest Random Number is {{result}}
+            <!-- <span v-if="history.length>0"> -->
+        <hr>
+            <h1>History of Numbers generated</h1>
+            <ul>
+                <li v-for="num in history">__</li>
+            </ul>
+            </span>
+    </div>
+
+
+    <script>
+            var app = new Vue({
+             el:'#app',
+             data:{
+             location: "",
+             result: "",
+             history :[]},
+             methods:{
+                 GetWeather : getWeather }
+        
+            })
+
+            async function getWeather() {
+                console.log("getWeather called");
+                const response = await fetch("http://localhost:8080/api/weather?location=" + this.location);
+                this.result = response;
+            }
+
+    </script>
+</body>
+</html>
